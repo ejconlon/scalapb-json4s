@@ -22,12 +22,10 @@ object StructFormat {
       case JString(s) => Kind.StringValue(value = s)
       case JDouble(num) => Kind.NumberValue(value = num)
       case JDecimal(num) => Kind.NumberValue(value = num.toDouble)
-      case JLong(num) => Kind.NumberValue(value = num.toDouble)
       case JInt(num) => Kind.NumberValue(value = num.toDouble)
       case JBool(value) => Kind.BoolValue(value = value)
       case obj: JObject => Kind.StructValue(value = structParser(obj))
       case arr: JArray => Kind.ListValue(listValueParser(arr))
-      case JSet(set) => throw new RuntimeException("Unsupported")
     }
     struct.Value(kind = kind)
   }

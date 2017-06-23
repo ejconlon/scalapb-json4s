@@ -37,7 +37,8 @@ releaseProcess := Seq[ReleaseStep](
 
 libraryDependencies ++= Seq(
   "com.trueaccord.scalapb" %% "scalapb-runtime" % scalapbVersion,
-  "org.json4s" %% "json4s-jackson" % "3.5.1",
+  // NOTE(eric) This is the version pulled in by Spark 2.1.1
+  "org.json4s" %% "json4s-jackson" % "3.2.11",
   "org.scalatest" %% "scalatest" % "3.0.1" % "test",
   "com.google.protobuf" % "protobuf-java-util" % "3.2.0" % "test",
   "com.google.protobuf" % "protobuf-java" % "3.2.0" % "protobuf"

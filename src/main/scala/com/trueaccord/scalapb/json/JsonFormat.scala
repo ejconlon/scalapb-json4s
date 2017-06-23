@@ -164,7 +164,7 @@ class Printer(
         case None => JString(e.name)
       }
     case PInt(v) => JInt(v)
-    case PLong(v) => if (formattingLongAsNumber) JLong(v) else JString(v.toString)
+    case PLong(v) => if (formattingLongAsNumber) JInt(v) else JString(v.toString)
     case PDouble(v) => JDouble(v)
     case PFloat(v) => JDouble(v)
     case PBoolean(v) => JBool(v)
@@ -356,7 +356,6 @@ object JsonFormat {
     case (ScalaType.Int, JDouble(x)) => PInt(x.intValue)
     case (ScalaType.Int, JDecimal(x)) => PInt(x.intValue)
     case (ScalaType.Int, JNull) => PInt(0)
-    case (ScalaType.Long, JLong(x)) => PLong(x.toLong)
     case (ScalaType.Long, JDecimal(x)) => PLong(x.longValue())
     case (ScalaType.Long, JString(x)) => PLong(x.toLong)
     case (ScalaType.Long, JInt(x)) => PLong(x.toLong)
