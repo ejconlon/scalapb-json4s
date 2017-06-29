@@ -264,7 +264,10 @@ class Parser(
         case None => defaultEnumParser(ed, value)
       })
     case ScalaType.Message(md) =>
-      fromJsonToPMessage(containerCompanion.messageCompanionForFieldNumber(fd.number), value)
+      value match {
+        case JNull => PEmpty
+        case _ => fromJsonToPMessage(containerCompanion.messageCompanionForFieldNumber(fd.number), value)
+      }
     case st => JsonFormat.parsePrimitiveByScalaType(st, value,
       throw new JsonFormatException(
         s"Unexpected value ($value) for field ${serializedName(fd)} of ${fd.containingMessage.name}"))
